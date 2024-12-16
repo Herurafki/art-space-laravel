@@ -1,8 +1,5 @@
 # Laravel 10 - Toko Online
 
-## Screenshots
-
-![preview img](/preview.png)
 
 ## Donwload
 
