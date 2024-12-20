@@ -192,7 +192,7 @@ class ProductController extends Controller
 				$product->categories()->sync($categoryIds);
 
 				if ($product->type == 'configurable') {
-					$this->_updateProductVariants($request);
+					$this->_updateProductVariants($request); 
 				} else {
 					ProductInventory::updateOrCreate(['product_id' => $product->id], ['qty' => $request['qty']]);
 				}

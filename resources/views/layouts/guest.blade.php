@@ -15,7 +15,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
 </head>
-
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">

@@ -101,7 +101,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**
@@ -140,6 +140,46 @@ class OrderController extends Controller
 			return redirect('admin/orders');
 		}
 	}
+
+	
+	public function midtransCallback(Request $request)
+{
+    // Ambil data notifikasi dari Midtrans
+    $notification = json_decode($request->getContent(), true);
+
+    // Log request untuk debug (jika diperlukan)
+    \Log::info('Midtrans Callback:', $notification);
+
+    // Validasi signature key Midtrans
+    $signatureKey = hash('sha512', $notification['order_id'] . $notification['status_code'] . $notification['gross_amount'] . config('services.midtrans.server_key'));
+    if ($signatureKey !== $notification['signature_key']) {
+        return response()->json(['message' => 'Invalid signature'], 403);
+    }
+
+    // Ambil order berdasarkan order_id
+    $order = Order::where('code', $notification['order_id'])->first();
+
+    if (!$order) {
+        return response()->json(['message' => 'Order not found'], 404);
+    }
+
+    // Update status pembayaran berdasarkan notifikasi dari Midtrans
+    $transactionStatus = $notification['transaction_status'];
+
+    DB::transaction(function () use ($order, $transactionStatus) {
+        if ($transactionStatus == 'settlement') {
+            $order->status = 'paid';
+        } elseif ($transactionStatus == 'pending') {
+            $order->status = 'unpaid';
+        } elseif (in_array($transactionStatus, ['cancel', 'expire', 'failure'])) {
+            $order->status = 'cancelled';
+        }
+        $order->save();
+    });
+
+    return response()->json(['message' => 'Callback processed']);
+}
+
 
     
     public function cancel(Order $order)

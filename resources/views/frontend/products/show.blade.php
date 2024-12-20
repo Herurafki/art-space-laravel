@@ -6,7 +6,7 @@
 			<div class="breadcrumb-content text-center">
 				<h2>product details</h2>
 				<ul>
-					<li><a href="/">home</a></li>
+					<li><a href="/">Home</a> </li>
 					<li> product details </li>
 				</ul>
 			</div>
@@ -126,16 +126,6 @@
 								@foreach ($product->categories as $category)
 									<li><a href="{{ url('products/category/'. $category->slug ) }}">{{ $category->name }}</a></li>
 								@endforeach
-							</ul>
-						</div>
-						<div class="product-details-cati-tag mtb-10">
-							<ul>
-								<li class="categories-title">Tags :</li>
-								<li><a href="#">fashion</a></li>
-								<li><a href="#">electronics</a></li>
-								<li><a href="#">toys</a></li>
-								<li><a href="#">food</a></li>
-								<li><a href="#">jewellery</a></li>
 							</ul>
 						</div>
 						<div class="product-share">

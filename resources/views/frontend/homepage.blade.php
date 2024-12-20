@@ -29,7 +29,7 @@
 		<div class="container-fluid">
 			<div class="section-title-6 text-center mb-50">
 				<h2>Popular Product</h2>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+				<p>Temukan produk-produk favorit yang paling banyak diminati! Koleksi populer kami menghadirkan pilihan terbaik yang sedang tren dan banyak dicari pelanggan.</p>
 			</div>
 			<div class="product-style">
 				<div class="popular-product-active owl-carousel">

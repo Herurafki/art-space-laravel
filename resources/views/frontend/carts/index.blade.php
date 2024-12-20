@@ -2,10 +2,10 @@
 
 @section('content')
 	<!-- header end -->
-	<div class="breadcrumb-area pt-205 breadcrumb-padding pb-210" style="background-image: url({{ asset('themes/ezone/assets/img/bg/breadcrumb.jpg') }})">
+	<div class="breadcrumb-area pt-195 breadcrumb-padding pb-210" style="background-image: url({{ asset('themes/ezone/assets/img/bg/breadcrumb.jpg') }})">
 		<div class="container">
 			<div class="breadcrumb-content text-center">
-				<h2>cart page</h2>
+				<h2>Karya Seni Favoritmu Siap Dimiliki</h2>
 				<ul>
 					<li><a href="{{ url('/') }}">home</a></li>
 					<li> cart page</li>

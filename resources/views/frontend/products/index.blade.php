@@ -4,10 +4,10 @@
 	<div class="breadcrumb-area pt-205 breadcrumb-padding pb-210" style="background-image: url({{ asset('themes/ezone/assets/img/bg/breadcrumb.jpg') }})">
 		<div class="container-fluid">
 			<div class="breadcrumb-content text-center">
-				<h2>shop grid 3 column</h2>
+				<h2>Here's Our Product</h2>
 				<ul>
-					<li><a href="#">home</a></li>
-					<li>shop grid 3 column</li>
+					<li><a href="*/">home</a></li>
+					<li>products</li>
 				</ul>
 			</div>
 		</div>

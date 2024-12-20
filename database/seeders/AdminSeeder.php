@@ -20,18 +20,5 @@ class AdminSeeder extends Seeder
             'password' => bcrypt('123'),
             'is_admin' => true
         ]);
-        // ,[
-        //     'first_name' => 'heru',
-        //     'last_name' => 'rafki',
-        //     'email' => 'herurafki11@gmail.com',
-        //     'password' => bcrypt('123'),
-        //     'is_admin' => false
-        // ],[
-        //     'first_name' => 'raja',
-        //     'last_name' => 'emon',
-        //     'email' => 'rajaemon@gmail.com',
-        //     'password' => bcrypt('123'),
-        //     'is_admin' => false
-        // ]);
     }
 }

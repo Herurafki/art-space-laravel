@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 @error('name')
-                <span class="error invalid-feedback"> 
+                <span class="error invalid-feedback">
                     {{ $message }}
                 </span>
                 @enderror
