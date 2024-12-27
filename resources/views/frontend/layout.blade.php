@@ -27,7 +27,7 @@
         <!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
-    <body>
+    <body >
         <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -46,8 +46,8 @@
                             <nav>
                                 <ul>
                                     <li><a href="/">Home</a> </li>
-                                    <li><a href="http://127.0.0.1:8000/products?">Products</a></li>
-                                    <li><a href="#">The Artist </a> </li>
+                                    <li><a href="products">Products</a></li>
+                                    <li><a href="about/artist">The Artist </a> </li>
                                     <li><a href="contact.html">Contact Us</a></li>
                                 </ul>
                             </nav>
@@ -99,8 +99,8 @@
                                 <nav id="mobile-menu-active">
                                     <ul class="menu-overflow">
                                         <li><a href="#">HOME</a></li>
-                                        <li><a href="http://127.0.0.1:8000/products?">Products</a></li>
-                                        <li><a href="#">The Artist </a> </li>
+                                        <li><a href="products">Products</a></li>
+                                        <li><a href="about/artist">The Artist </a> </li>
                                         <li><a href="contact.html">Contact Us</a></li>  
                                     </ul>
                                 </nav>							
@@ -151,42 +151,6 @@
         <!-- end -->
         
         @yield('content')
-       
-        <!-- services -->
-        <div class="services-area wrapper-padding-4 gray-bg pt-120 pb-80">
-            <div class="container-fluid">
-                <div class="services-wrapper">
-                    <div class="single-services mb-40">
-                        <div class="services-img">
-                            <img src="{{ asset('themes/ezone/assets/img/icon-img/26.png') }}" alt="">
-                        </div>
-                        <div class="services-content">
-                            <h4>Great Shippig</h4>
-                            <p>Pengiriman cepat dan aman langsung ke depan rumah. </p>
-                        </div>
-                    </div>
-                    <div class="single-services mb-40">
-                        <div class="services-img">
-                            <img src="{{ asset('themes/ezone/assets/img/icon-img/27.png') }}" alt="">
-                        </div>
-                        <div class="services-content">
-                            <h4>24/7 Support</h4>
-                            <p>Tim kami siap membantu Anda kapan saja, 24/7 tanpa henti. </p>
-                        </div>
-                    </div>
-                    <div class="single-services mb-40">
-                        <div class="services-img">
-                            <img src="{{ asset('themes/ezone/assets/img/icon-img/28.png') }}" alt="">
-                        </div>
-                        <div class="services-content">
-                            <h4>Secure Payments</h4>
-                            <p>Belanja dengan tenang, kami menjamin pembayaran Anda aman. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end -->
 
         <!-- footer -->
         <footer class="footer-area">

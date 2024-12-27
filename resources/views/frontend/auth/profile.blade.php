@@ -66,7 +66,7 @@
 										<div class="col-md-12">
                                             <div class="checkout-form-list">
                                                 <label>Address <span class="required">*</span></label>
-                                                <input type="text" name="address1" value="{{ old('address1') }}">
+                                                <input type="text" name="address1" value="{{ old('address1', auth()->user()->address1) }}">
                                             </div>
                                             @error('address1')
 												<span class="invalid-feedback" role="alert">
@@ -91,29 +91,31 @@
 
 									<div class="form-group row">
 										<div class="col-md-6">
-                                            <label>Provinsi<span class="required">*</span></label>
-                                            <select name="province_id" id="shipping-province">
-                                                @foreach($provinces as $id => $province)
-                                                    <option value="{{ $id }}">{{ $province }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('province_id')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
+                                            <label for="province_id">Provinsi <span class="required">*</span></label>
+											<select name="province_id" id="shipping-province" class="form-control">
+												<option value="">-- Pilih Provinsi --</option>
+												@foreach($provinces as $id => $province)
+													<option value="{{ $id }}" {{ $id == old('province_id', $user->province_id) ? 'selected' : '' }}>
+														{{ $province }}
+													</option>
+												@endforeach
+											</select>
+											@error('province_id')
+												<span class="invalid-feedback">{{ $message }}</span>
 											@enderror
 										</div>
 										<div class="col-md-6">
-                                            <label>City<span class="required">*</span></label>
-                                            <select name="city_id" id="city_id">
-                                                @foreach($cities as $id => $city)
-                                                    <option value="{{ $id }}">{{ $city }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('city_id')
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $message }}</strong>
-												</span>
+                                            <label for="city_id">Kota <span class="required">*</span></label>
+											<select name="city_id" id="city_id" class="form-control">
+												<option value="">-- Pilih Kota --</option>
+												@foreach($cities as $id => $city)
+													<option value="{{ $id }}" {{ $id == old('city_id', $user->city_id) ? 'selected' : '' }}>
+														{{ $city }}
+													</option>
+												@endforeach
+											</select>
+											@error('city_id')
+												<span class="invalid-feedback">{{ $message }}</span>
 											@enderror
 										</div>
 									</div>
@@ -164,5 +166,27 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		document.getElementById('shipping-province').addEventListener('change', function () {
+			const provinceId = this.value;
+	
+			fetch(`/api/cities?province_id=${provinceId}`)
+				.then(response => response.json())
+				.then(data => {
+					const citySelect = document.getElementById('city_id');
+					citySelect.innerHTML = '<option value="">-- Pilih Kota --</option>'; // Kosongkan daftar kota sebelumnya
+	
+					for (const [id, name] of Object.entries(data)) {
+						const option = document.createElement('option');
+						option.value = id;
+						option.textContent = name;
+						citySelect.appendChild(option);
+					}
+				})
+				.catch(error => console.error('Error fetching cities:', error));
+		});
+	</script>
+	
 	<!-- register-area end -->
 @endsection

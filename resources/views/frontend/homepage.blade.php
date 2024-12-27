@@ -16,7 +16,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 @endforeach
 
@@ -72,5 +72,42 @@
        
 	<!-- product area end -->
 @endif
-    <!-- end -->
+
+	<!-- services -->
+	<div class="services-area wrapper-padding-4 gray-bg pt-120 pb-80">
+		<div class="container-fluid">
+			<div class="services-wrapper">
+				<div class="single-services mb-40">
+					<div class="services-img">
+						<img src="{{ asset('themes/ezone/assets/img/icon-img/26.png') }}" alt="">
+					</div>
+					<div class="services-content">
+						<h4>Great Shippig</h4>
+						<p>Pengiriman cepat dan aman langsung ke depan rumah. </p>
+					</div>
+				</div>
+				<div class="single-services mb-40">
+					<div class="services-img">
+						<img src="{{ asset('themes/ezone/assets/img/icon-img/27.png') }}" alt="">
+					</div>
+					<div class="services-content">
+						<h4>24/7 Support</h4>
+						<p>Tim kami siap membantu Anda kapan saja, 24/7 tanpa henti. </p>
+					</div>
+				</div>
+				<div class="single-services mb-40">
+					<div class="services-img">
+						<img src="{{ asset('themes/ezone/assets/img/icon-img/28.png') }}" alt="">
+					</div>
+					<div class="services-content">
+						<h4>Secure Payments</h4>
+						<p>Belanja dengan tenang, kami menjamin pembayaran Anda aman. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end services -->
+
+<!-- end -->
 @endsection

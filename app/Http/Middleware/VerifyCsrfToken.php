@@ -16,5 +16,6 @@ class VerifyCsrfToken extends Middleware
         'payments/completed',
         'payments/failed',
         'payments/unfinish',
+        
     ];
 }

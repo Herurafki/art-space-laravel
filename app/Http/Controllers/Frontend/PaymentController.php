@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
+	
     public function notification(Request $request)
 	{
 		$payload = $request->getContent();
@@ -70,7 +71,7 @@ class PaymentController extends Controller
 			// TODO set payment status in merchant's database to 'expire'
 			$paymentStatus = PAYMENT::EXPIRE;
 		} else if ($transaction == 'cancel') {
-			// TODO set payment status in merchant's database to 'Denied'
+			// TODO set payment status in merchant's database to 'Cancel'
 			$paymentStatus = PAYMENT::CANCEL;
 		}
 

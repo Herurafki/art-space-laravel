@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
+Auth::routes(['register' => false]);
+
+Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'register']);
+
 
 Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
     // admin
@@ -40,8 +44,7 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin', 'as' =>
     Route::get('orders/{order:id}/cancel', [\App\Http\Controllers\Admin\OrderController::class , 'cancel'])->name('orders.cancels');
 	Route::put('orders/cancel/{order:id}', [\App\Http\Controllers\Admin\OrderController::class , 'doCancel'])->name('orders.cancel');
     Route::resource('shipments', \App\Http\Controllers\Admin\ShipmentController::class);
-    // Route::post('/midtrans/callback', [\App\Http\Controllers\Frontend\MidtransController::class, 'handleCallback']);
-
+    
     Route::get('reports/revenue', [\App\Http\Controllers\Admin\ReportController::class, 'revenue'])->name('reports.revenue');
     Route::get('reports/product', [\App\Http\Controllers\Admin\ReportController::class, 'product'])->name('reports.product');
     Route::get('reports/inventory', [\App\Http\Controllers\Admin\ReportController::class, 'inventory'])->name('reports.inventory');
@@ -53,6 +56,7 @@ Route::get('/', [\App\Http\Controllers\Frontend\HomepageController::class, 'inde
 Route::get('products', [\App\Http\Controllers\Frontend\ProductController::class, 'index']);
 Route::get('product/{product:slug}', [\App\Http\Controllers\Frontend\ProductController::class, 'show'])->name('product.detail');
 Route::get('products/quick-view/{product:slug}', [\App\Http\Controllers\Frontend\ProductController::class, 'quickView']);
+Route::get('about/artist',[\App\Http\Controllers\Frontend\AboutController::class, 'index']);
 
 Route::get('carts', [\App\Http\Controllers\Frontend\CartController::class, 'index'])->name('carts.index');
 Route::post('carts', [\App\Http\Controllers\Frontend\CartController::class, 'store'])->name('carts.store');
@@ -60,7 +64,7 @@ Route::post('carts/update', [\App\Http\Controllers\Frontend\CartController::clas
 Route::get('carts/remove/{cartId}', [\App\Http\Controllers\Frontend\CartController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth'], function() { 
-    Route::get('orders/checkout', [\App\Http\Controllers\Frontend\OrderController::class, 'checkout'])->middleware('auth');
+    Route::get('orders/checkout', [\App\Http\Controllers\Frontend\OrderController::class, 'checkout'])->middleware('auth'); 
     Route::post('orders/checkout', [\App\Http\Controllers\Frontend\OrderController::class, 'doCheckout'])->name('orders.checkout')->middleware('auth');
     Route::get('orders/cities', [\App\Http\Controllers\Frontend\OrderController::class, 'cities'])->middleware('auth');
     Route::post('orders/shipping-cost', [\App\Http\Controllers\Frontend\OrderController::class, 'shippingCost'])->middleware('auth');
@@ -71,8 +75,10 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::resource('wishlists', \App\Http\Controllers\Frontend\WishListController::class)->only(['index','store','destroy']);
     
-    Route::get('profile',  [\App\Http\Controllers\Auth\ProfileController::class, 'index']);
-    Route::put('profile', [\App\Http\Controllers\Auth\ProfileController::class, 'update']);
+    Route::get('profile',  [\App\Http\Controllers\Auth\ProfileController::class, 'index'])->name('profile.index');
+    Route::put('profile', [\App\Http\Controllers\Auth\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/api/cities', [\App\Http\Controllers\Auth\ProfileController::class, 'getCitiesAjax']);
+    Route::get('/api/postal-code', [\App\Http\Controllers\Auth\ProfileController::class, 'getPostalCode']);
 
 });
 

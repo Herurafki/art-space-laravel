@@ -20,14 +20,23 @@
 					<div class="login">
 						<div class="login-form-container">
 							<div class="login-form">
+								<!-- Tampilkan pesan kesalahan umum -->
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 								<form method="POST" action="{{ route('register') }}">
 									@csrf
-
 									<div class="form-group row">
 										<div class="col-md-12">
 											<input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus placeholder="First name">
 											@error('first_name')
-												<span class="invalid-feedback" role="alert">
+												<span class="invalid-feedback" role="alert"> 
 													<strong>{{ $message }}</strong>
 												</span>
 											@enderror
@@ -53,19 +62,21 @@
 												<span class="invalid-feedback" role="alert">
 													<strong>{{ $message }}</strong>
 												</span>
-											@enderror
+											@enderror 
 										</div>
 									</div>
 
 									<div class="form-group row">
 										<div class="col-md-12">
 											<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
-
 											@error('password')
 												<span class="invalid-feedback" role="alert">
 													<strong>{{ $message }}</strong>
 												</span>
 											@enderror
+											<small class="form-text text-muted">
+												Password must be more than 8 characters.
+											</small>
 										</div>
 									</div>
 
