@@ -26,17 +26,20 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        
         // Validasi input
         $request->validate([
             'province_id' => 'required',
             'city_id' => 'required',
         ]);
+        \Log::info('Request Input:', $request->all());
 
         // Ambil user
         $user = auth()->user();
 
         // Update data user
         $user->update($request->all());
+        \Log::info('Updated User Data:', $user->toArray());
 
         // Redirect kembali ke halaman profile dengan pesan sukses
         return redirect()->route('profile.index')->with('success', 'Profile updated successfully.');

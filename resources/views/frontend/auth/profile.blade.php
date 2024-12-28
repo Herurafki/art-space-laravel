@@ -7,7 +7,7 @@
 				<h2>Register</h2>
 				<ul>
 					<li><a href="#">home</a></li>
-					<li>register</li>
+					<li>profile</li>
 				</ul>
 			</div>
 		</div>
@@ -19,19 +19,21 @@
 					@include('frontend.partials.user_menu')
 				</div>
 				<div class="col-lg-9">
-                    @if(session()->has('message'))
-                        <div class="content-header mb-3 pb-0">
-                            <div class="container-fluid">
-                                <div class="mb-0 alert alert-{{ session()->get('alert-type') }} alert-dismissible fade show" role="alert">
-                                    <strong>{{ session()->get('message') }}</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div> 
-                            </div><!-- /.container-fluid -->
-                        </div>
-                    @endif
+                    @if(session('success') || session('message'))
+						<div class="content-header mb-3 pb-0">
+							<div class="container-fluid">
+								<div class="mb-0 alert alert-{{ session('alert-type', 'success') }} alert-dismissible fade show" role="alert">
+									<strong>{{ session('success') ?? session('message') }}</strong>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div> 
+							</div>
+						</div>
+					@endif
+
 					<div class="login">
+							
 						<div class="login-form-container">
 							<div class="login-form">
                                     <form action="{{ url('profile') }}" method="post">
@@ -41,7 +43,7 @@
 										<div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Nama Pertama <span class="required">*</span></label>										
-                                                <input type="text" name="first_name" value="{{ old('first_name', auth()->user()->first_name) }}">
+                                                <input type="text" id="first_name" name="first_name" value="{{ old('first_name', auth()->user()->first_name) }}">
                                             </div>
 											@error('first_name')
 												<span class="invalid-feedback" role="alert">
@@ -52,7 +54,7 @@
 										<div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Nama Akhir <span class="required">*</span></label>										
-                                                <input type="text" name="last_name" value="{{ old('last_name', auth()->user()->last_name) }}">
+                                                <input type="text" id="last_name" name="last_name" value="{{ old('last_name', auth()->user()->last_name) }}">
                                             </div>
                                             @error('last_name')
 												<span class="invalid-feedback" role="alert">
@@ -66,7 +68,7 @@
 										<div class="col-md-12">
                                             <div class="checkout-form-list">
                                                 <label>Address <span class="required">*</span></label>
-                                                <input type="text" name="address1" value="{{ old('address1', auth()->user()->address1) }}">
+                                                <input type="text" id="address1" name="address1" value="{{ old('address1', auth()->user()->address1) }}">
                                             </div>
                                             @error('address1')
 												<span class="invalid-feedback" role="alert">
@@ -79,7 +81,7 @@
 									<div class="form-group row">
 										<div class="col-md-12">
                                             <div class="checkout-form-list">
-                                                <input type="text" name="address2" value="{{ old('address2', auth()->user()->address2) }}">
+                                                <input type="text"  id="address2" name="address2" value="{{ old('address2', auth()->user()->address2) }}">
                                             </div>
                                             @error('address2')
 												<span class="invalid-feedback" role="alert">
@@ -124,7 +126,7 @@
 										<div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Postcode / Zip <span class="required">*</span></label>										
-                                                <input type="text" name="postcode" value="{{ old('postcode', auth()->user()->postcode) }}">
+                                                <input type="text" id="postcode" name="postcode" value="{{ old('postcode', auth()->user()->postcode) }}">
                                             </div>
                                             @error('postcode')
 												<span class="invalid-feedback" role="alert">
@@ -135,7 +137,7 @@
 										<div class="col-md-6">
                                             <div class="checkout-form-list">
                                                 <label>Phone  <span class="required">*</span></label>										
-                                                <input type="text" name="phone" value="{{ old('phone', auth()->user()->phone) }}">
+                                                <input type="text" id="phone" name="phone" value="{{ old('phone', auth()->user()->phone) }}">
                                             </div>
 											@error('phone')
 												<span class="invalid-feedback" role="alert">
@@ -147,7 +149,7 @@
 
 									<div class="form-group row">
 										<div class="col-md-12">
-                                            <input type="email" value="{{ old('email', auth()->user()->email) }}" class="form-control" placeholder="Email">
+                                            <input type="email" id="email" value="{{ old('email', auth()->user()->email) }}" class="form-control" placeholder="Email">
 											@error('email')
 												<span class="invalid-feedback" role="alert">
 													<strong>{{ $message }}</strong>

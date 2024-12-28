@@ -23,6 +23,7 @@
 								<!-- Tampilkan pesan kesalahan umum -->
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
+										
                                         <ul>
                                             @foreach ($errors->all() as $error)
                                                 <li>{{ $error }}</li>
@@ -68,7 +69,7 @@
 
 									<div class="form-group row">
 										<div class="col-md-12">
-											<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+											<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="new-password" placeholder="Password">
 											@error('password')
 												<span class="invalid-feedback" role="alert">
 													<strong>{{ $message }}</strong>

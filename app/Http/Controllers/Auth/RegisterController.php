@@ -60,17 +60,21 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // Validasi data
-    $this->validator($request->all())->validate(); // Laravel akan otomatis kembali jika validasi gagal
+        $validator = $this->validator($request->all());
 
-    // Jika validasi berhasil, buat user baru
+    if ($validator->fails()) {
+        \Log::info('Error Validasi:', $validator->errors()->toArray());
+        // Kembalikan ke halaman register dengan pesan error dan input sebelumnya
+        return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    // Jika validasi berhasil, buat pengguna baru
     $user = $this->create($request->all());
+    auth()->login($user);
 
-        
-
-        // Setelah pendaftaran berhasil, Anda bisa login pengguna atau melakukan tindakan lain
-        auth()->login($user);
-
-        return redirect('/')->with('success', 'Registration successful!');
+    // Arahkan ke halaman home setelah berhasil
+    return redirect('/')->with('success', 'Registration successful!');
     }
 }

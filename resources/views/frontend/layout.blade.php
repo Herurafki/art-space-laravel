@@ -26,6 +26,11 @@
 
         <!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+        </style>
     </head>
     <body >
         <!--[if lt IE 8]>
@@ -46,9 +51,9 @@
                             <nav>
                                 <ul>
                                     <li><a href="/">Home</a> </li>
-                                    <li><a href="products">Products</a></li>
-                                    <li><a href="about/artist">The Artist </a> </li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{{ url('products') }}">Products</a></li>
+                                    <li><a href="{{ url('about/artist') }}">The Artist </a> </li>
+                                    <li><a href="#footer">Contact Us</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -98,9 +103,9 @@
                             <div class="mobile-menu">
                                 <nav id="mobile-menu-active">
                                     <ul class="menu-overflow">
-                                        <li><a href="#">HOME</a></li>
-                                        <li><a href="products">Products</a></li>
-                                        <li><a href="about/artist">The Artist </a> </li>
+                                        <li><a href="/">HOME</a></li>
+                                        <li><a href="{{ url('products') }}">Products</a></li>
+                                        <li><a href="{{ url('about/artist') }}">The Artist </a> </li>
                                         <li><a href="contact.html">Contact Us</a></li>  
                                     </ul>
                                 </nav>							
@@ -153,7 +158,7 @@
         @yield('content')
 
         <!-- footer -->
-        <footer class="footer-area">
+        <footer class="footer-area" id="footer">
             <div class="footer-top-area pt-70 pb-35 wrapper-padding-5">
                 <div class="container-fluid">
                     <div class="widget-wrapper">

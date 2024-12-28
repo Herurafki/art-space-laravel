@@ -19,12 +19,12 @@
         <div class="row mb-5">
             <div class="col-lg-4 col-md-5">
                 <div class="profile-image text-center">
-                    <img src="{{ asset('themes/ezone/assets/img/profile/vincent-van-gogh.jpg') }}" alt="Vincent van Gogh" class="img-fluid rounded">
+                    <img src="{{ asset('themes/ezone/assets/img/profile/vincent-van-gogh.jpg') }}" alt="Vincent van Gogh" class="img-fluid rounded border border-primary shadow-lg" style="transition: transform 0.3s ease;">
                 </div>
             </div>
             <div class="col-lg-8 col-md-7">
                 <div class="profile-content">
-                    <h1>Vincent van Gogh</h1>
+                    <h1>Gusti Prayoga</h1>
                     <p>
                         Vincent membawa pengalaman spesial dalam dunia seni kontemporer pada perannya di ArtSpace. 
                         Sebagai Direktur Penjualan Pribadi, Amanda berusaha memberikan wawasan dan panduan pribadi kepada 
@@ -43,12 +43,14 @@
             </div>
             <div class="col-lg-6 col-md-12">
                 <div class="gallery-info">
-                    <!-- Peta yang disematkan dalam kotak kecil -->
-                    {{-- <a href="https://www.google.com/maps?q=Padang,Sumatera+Barat&hl=id" target="_blank">
-                        <iframe src="https://www.google.com/maps/embed/v1/place?q=Padang,Sumatera+Barat&key=YOUR_GOOGLE_MAPS_API_KEY" 
-                            width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen>
+                    <div class="map-responsive">
+                        <iframe 
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Cultural+Park+West+Sumatra+Province" 
+                            frameborder="0" 
+                            style="border:2px solid #ddd; border-radius: 8px; width: 100%; height: 250px;" 
+                            allowfullscreen>
                         </iframe>
-                    </a>  --}}
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
@@ -66,12 +68,49 @@
             </div>
             <div class="col-lg-12 text-center">
                 <div class="social-links mt-3">
-                    <a href="https://www.instagram.com/_draf.art.id" target="_blank" class="btn btn-outline-primary mx-2">📸 @_draf.art.id</a>
-                    <a href="https://twitter.com/gustiprayoga1" target="_blank" class="btn btn-outline-info mx-2">🐦 @gustiprayoga1</a>
-                    <a href="https://facebook.com/gustiprayoga1" target="_blank" class="btn btn-outline-primary mx-2">📘 gustiprayoga1</a>
+                    <a href="https://www.instagram.com/_draf.art.id" target="_blank" class="btn btn-outline-danger mx-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram Logo" style="width: 15px; height: 15px; margin-right: 3px;">
+                         @_draf.art.id
+                    </a>
+                    <a href="https://twitter.com/gustiprayoga1" target="_blank" class="btn btn-outline-info mx-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/180px-Logo_of_Twitter.svg.png" alt="Instagram Logo" style="width: 15px; height: 15px; margin-right: 3px;">
+                         @gustiprayoga1
+                    </a>
+                    <a href="https://facebook.com/gustiprayoga1" target="_blank" class="btn btn-outline-primary mx-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/900px-Facebook_f_logo_%282019%29.svg.png" alt="Instagram Logo" style="width: 15px; height: 15px; margin-right: 3px;">
+                         gustiprayoga1
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .profile-image img {
+        transition: transform 0.3s ease-in-out;
+    }
+    .profile-image img:hover {
+        transform: scale(1.1);
+    }
+    
+    .btn:hover {
+        transition: all 0.3s ease;
+        transform: scale(1.1);
+    }
+
+    .social-links .btn {
+        border-radius: 50px;
+        font-weight: 600;
+    }
+
+    .map-responsive iframe {
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .hover-effect:hover {
+        background-color: #f0f0f0;
+    }
+</style>
 @endsection
